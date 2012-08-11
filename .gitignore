@@ -1,0 +1,19 @@
+# Visual Studio build directories #
+###################################
+bin/*
+obj/*
+*/bin/*
+*/obj/*
+
+# Visual Studio files and test results #
+########################################
+*.suo
+*.testsettings
+*.vsmdi
+*.user
+*.user
+TestResults/*
+
+# Deployment folder #
+#####################
+Deploy/*
