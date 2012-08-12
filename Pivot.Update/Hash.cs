@@ -79,6 +79,30 @@ namespace Pivot.Update
             return (obj as Hash == this);
         }
 
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                long l = 29049091752181;
+                bool m = false;
+                for (int i = 0; i < this.m_Bytes.Length; i++)
+                {
+                    if (m)
+                    {
+                        l *= 4534177178051;
+                        l += this.m_Bytes[i] * 26739433858439;
+                    }
+                    else
+                    {
+                        l *= this.m_Bytes[i] * 12411996361207;
+                        l += 10615904727893;
+                    }
+                    m = !m;
+                }
+                return (int)l;
+            }
+        }
+
         #region IXmlSerializable Members
 
         private Hash()

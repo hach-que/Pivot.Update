@@ -48,10 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pivot.Update.Patching\Pivot.Update.Patching.csproj">
-      <Project>{7F21B4A9-E203-45D8-B4AF-3CB7B4A29DDE}</Project>
-      <Name>Pivot.Update.Patching</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Pivot.Update\Pivot.Update.csproj">
       <Project>{66E619FC-FA0A-497B-BCE8-9588E180E9E6}</Project>
       <Name>Pivot.Update</Name>
