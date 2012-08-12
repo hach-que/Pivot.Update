@@ -12,6 +12,8 @@ namespace Pivot.Update.Server
     {
         static void Main(string[] args)
         {
+            Cache c = new Cache(false);
+            Console.WriteLine("Using cache stored at: " + c.GetFilePath("") + ".");
             IScheduler scheduler = KayakScheduler.Factory.Create(new SchedulerDelegate());
             IServer server = KayakServer.Factory.CreateHttp(new RequestDelegate(), scheduler);
 

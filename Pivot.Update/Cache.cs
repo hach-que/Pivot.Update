@@ -11,22 +11,15 @@ namespace Pivot.Update
     public class Cache
     {
         private bool m_Local;
-        private SecurityIdentifier m_SID;
         private string m_Storage;
 
         public Cache(bool local)
         {
             this.m_Local = local;
             if (local)
-            {
-                this.m_SID = WindowsIdentity.GetCurrent().User;
                 this.m_Storage = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            }
             else
-            {
-                this.m_SID = WindowsIdentity.GetAnonymous().User;
                 this.m_Storage = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            }
             this.m_Storage = Path.Combine(this.m_Storage, "Pivot Cache");
             if (!Directory.Exists(this.m_Storage))
                 Directory.CreateDirectory(this.m_Storage);
@@ -215,7 +208,7 @@ namespace Pivot.Update
                 }
             }
 
-            throw new InvalidOperationException();
+            return current.FullName;
         }
 
         /// <summary>

@@ -37,12 +37,12 @@ namespace Pivot.Update.Server.Control
 
                     foreach (string s in GetRecursiveFilesInCwd())
                     {
-                        Hash hash = Hash.FromFile(Environment.CurrentDirectory + "\\" + s);
+                        Hash hash = Hash.FromFile(Path.Combine(Environment.CurrentDirectory, s));
                         Console.WriteLine(Hash.Empty.ToString() + " => " + hash.ToString() + " " + s);
                         c.Set<Hash>("server/" + appname + "/hashes/" + s, hash);
                         if (c.Exists("server/" + appname + "/store/" + s))
                             c.Delete("server/" + appname + "/store/" + s);
-                        File.Copy(Environment.CurrentDirectory + "\\" + s, c.GetFilePath("server/" + appname + "/store/" + s));
+                        File.Copy(Path.Combine(Environment.CurrentDirectory, s), c.GetFilePath("server/" + appname + "/store/" + s));
                     }
 
                     return;
@@ -72,34 +72,34 @@ namespace Pivot.Update.Server.Control
                             // File is being updated, get a hash for the current version
                             // and for the stored version.
                             Hash oldHash = Hash.FromFile(c.GetFilePath("server/" + appname + "/store/" + s));
-                            Hash newHash = Hash.FromFile(Environment.CurrentDirectory + "\\" + s);
+                            Hash newHash = Hash.FromFile(Path.Combine(Environment.CurrentDirectory, s));
                             if (oldHash != newHash)
                             {
                                 // Files are different, produce a diff.
                                 byte[] oldData = FileUtils.GetAllBytes(c.GetFilePath("server/" + appname + "/store/" + s));
-                                byte[] newData = FileUtils.GetAllBytes(Environment.CurrentDirectory + "\\" + s);
+                                byte[] newData = FileUtils.GetAllBytes(Path.Combine(Environment.CurrentDirectory, s));
                                 List<Patch> patches = dmf.patch_make(Encoding.ASCII.GetString(oldData), Encoding.ASCII.GetString(newData));
                                 string result = dmf.patch_toText(patches);
                                 c.Set<string>("server/" + appname + "/patches/" + s + "/" + oldHash + "-" + newHash, result);
                                 c.Set<Hash>("server/" + appname + "/hashes/" + s, newHash);
                                 if (c.Exists("server/" + appname + "/store/" + s))
                                     c.Delete("server/" + appname + "/store/" + s);
-                                File.Copy(Environment.CurrentDirectory + "\\" + s, c.GetFilePath("server/" + appname + "/store/" + s));
+                                File.Copy(Path.Combine(Environment.CurrentDirectory, s), c.GetFilePath("server/" + appname + "/store/" + s));
                                 Console.WriteLine(oldHash + " => " + newHash + " " + s);
                             }
                         }
                         else
                         {
                             // A new file is being stored.
-                            Hash newHash = Hash.FromFile(Environment.CurrentDirectory + "\\" + s);
-                            byte[] newData = FileUtils.GetAllBytes(Environment.CurrentDirectory + "\\" + s);
+                            Hash newHash = Hash.FromFile(Path.Combine(Environment.CurrentDirectory, s));
+                            byte[] newData = FileUtils.GetAllBytes(Path.Combine(Environment.CurrentDirectory, s));
                             List<Patch> patches = dmf.patch_make("", Encoding.ASCII.GetString(newData));
                             string result = dmf.patch_toText(patches);
                             c.Set<string>("server/" + appname + "/patches/" + s + "/" + Hash.Empty + "-" + newHash, result);
                             c.Set<Hash>("server/" + appname + "/hashes/" + s, newHash);
                             if (c.Exists("server/" + appname + "/store/" + s))
                                 c.Delete("server/" + appname + "/store/" + s);
-                            File.Copy(Environment.CurrentDirectory + "\\" + s, c.GetFilePath("server/" + appname + "/store/" + s));
+                            File.Copy(Path.Combine(Environment.CurrentDirectory, s), c.GetFilePath("server/" + appname + "/store/" + s));
                             Console.WriteLine(Hash.Empty + " => " + newHash + " " + s);
                         }
                     }
