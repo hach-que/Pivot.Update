@@ -1,0 +1,34 @@
+#
+# This is a Pivot.Update deployment file.  It describes
+# the mappings between the filesystem and how files should
+# be deployed.
+#
+# Empty lines and lines starting with # are ignored.
+# Each instruction must be one of 'include', 'exclude'
+# or 'rewrite' where the first parameter is a regular
+# expression and in the case of 'rewrite', the second
+# parameter describes the replacement regex.
+#
+# Spaces in regular expression can be escaped using the
+# backslash (\).
+#
+# All paths use / as the directory seperator for matching,
+# and all paths are relative to the .pvdeploy file, regardless
+# of the platform.
+#
+
+# Include our build output.
+include ^Pivot.Update/bin/Debug/Pivot.Update.(dll|pdb)$
+include ^Pivot.Update.Server/bin/Debug/Pivot.Update.Server.(exe|exe.config|pdb)$
+include ^Pivot.Update.Server/bin/Debug/Kayak.(dll|pdb)$
+include ^Pivot.Update.Service/bin/Debug/Pivot.Update.Service.(exe|exe.config|pdb)$
+include ^pvclnt/bin/Debug/pvclnt.(exe|exe.config|pdb)$
+include ^pvctrl/bin/Debug/pvctrl.(exe|exe.config|pdb)$
+
+# Rewrite them to all be contained in the same directory.
+rewrite ^Pivot.Update/bin/Debug/Pivot.Update.(dll|pdb)$ Pivot.Update.$1
+rewrite ^Pivot.Update.Server/bin/Debug/Pivot.Update.Server.(exe|exe.config|pdb)$ Pivot.Update.Server.$1
+rewrite ^Pivot.Update.Server/bin/Debug/Kayak.(dll|pdb)$ Kayak.$1
+rewrite ^Pivot.Update.Service/bin/Debug/Pivot.Update.Service.(exe|exe.config|pdb)$ Pivot.Update.Service.$1
+rewrite ^pvclnt/bin/Debug/pvclnt.(exe|exe.config|pdb)$ pvclnt.$1
+rewrite ^pvctrl/bin/Debug/pvctrl.(exe|exe.config|pdb)$ pvctrl.$1

@@ -54,6 +54,8 @@
     <Compile Include="ApplicationInstance.cs" />
     <Compile Include="Cache.cs" />
     <Compile Include="Deploy.cs" />
+    <Compile Include="FileFilter.cs" />
+    <Compile Include="FileFilterParser.cs" />
     <Compile Include="FileUtils.cs" />
     <Compile Include="Hash.cs" />
     <Compile Include="InterProcess.cs" />
