@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\Ionic.Zip\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="Kayak">
       <HintPath>..\packages\Kayak.0.7.2\lib\Kayak.dll</HintPath>
     </Reference>
@@ -50,6 +53,7 @@
   <ItemGroup>
     <Compile Include="BufferedConsumer.cs" />
     <Compile Include="BufferedProducer.cs" />
+    <Compile Include="GetZipOperation.cs" />
     <Compile Include="GetPatchesOperation.cs" />
     <Compile Include="GetFileOperation.cs" />
     <Compile Include="SolveOperation.cs" />

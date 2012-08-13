@@ -17,7 +17,8 @@ namespace Pivot.Update.Server
             {
                 new InitialOperation(),
                 new GetFileOperation(),
-                new GetPatchesOperation()
+                new GetPatchesOperation(),
+                new GetZipOperation()
             };
         }
 

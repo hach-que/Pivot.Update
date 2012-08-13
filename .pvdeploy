@@ -21,6 +21,7 @@
 include ^Pivot.Update/bin/Debug/Pivot.Update.(dll|pdb)$
 include ^Pivot.Update.Server/bin/Debug/Pivot.Update.Server.(exe|exe.config|pdb)$
 include ^Pivot.Update.Server/bin/Debug/Kayak.(dll|pdb)$
+include ^Pivot.Update.Server/bin/Debug/Ionic.Zip.(dll|pdb)$
 include ^Pivot.Update.Service/bin/Debug/Pivot.Update.Service.(exe|exe.config|pdb)$
 include ^pvclnt/bin/Debug/pvclnt.(exe|exe.config|pdb)$
 include ^pvctrl/bin/Debug/pvctrl.(exe|exe.config|pdb)$
@@ -29,6 +30,7 @@ include ^pvctrl/bin/Debug/pvctrl.(exe|exe.config|pdb)$
 rewrite ^Pivot.Update/bin/Debug/Pivot.Update.(dll|pdb)$ Pivot.Update.$1
 rewrite ^Pivot.Update.Server/bin/Debug/Pivot.Update.Server.(exe|exe.config|pdb)$ Pivot.Update.Server.$1
 rewrite ^Pivot.Update.Server/bin/Debug/Kayak.(dll|pdb)$ Kayak.$1
+rewrite ^Pivot.Update.Server/bin/Debug/Ionic.Zip.(dll|pdb)$ Ionic.Zip.$1
 rewrite ^Pivot.Update.Service/bin/Debug/Pivot.Update.Service.(exe|exe.config|pdb)$ Pivot.Update.Service.$1
 rewrite ^pvclnt/bin/Debug/pvclnt.(exe|exe.config|pdb)$ pvclnt.$1
 rewrite ^pvctrl/bin/Debug/pvctrl.(exe|exe.config|pdb)$ pvctrl.$1
